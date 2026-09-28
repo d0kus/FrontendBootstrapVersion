@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 
+  Authors: Umarov Diyar, Anuar Muratbay, Aibek Mukhat
+  Group: SE-2507
+  Assignment: #1 HTML & CSS Basics
+-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie schedule | 404 CINEMA</title>
+    <link rel="stylesheet" href="css/style.css">
+    </head>
+
+<body class="grid-layout-page">
+    <header id="main-nav" class="grid-header">
+        <div class="logo">404 Cinema</div>
+        <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="halls.html">Halls & Tech</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="about.html">About Us</a></li>
+        </ul>
+    </header>
+
+    <aside class="grid-sidebar">
+        <h3>Quick Filters</h3>
+        <ul class="filter-list">
+        <li><a href="#">All Formats</a></li>
+        <li><a href="#">IMAX Laser</a></li>
+        <li><a href="#">VIP Lounge</a></li>
+        <li><a href="#">Dolby Atmos</a></li>
+        </ul>
+        
+        <div class="sidebar-info-box">
+        <h4>Student Discount</h4>
+        <p>Show your student ID at the desk for 25% off all sessions!</p>
+        </div>
+    </aside>
+
+    <main class="grid-main">
+        <h1>Showtimes Schedule</h1>
+        <p>Check the movie schedule, select your preferred hall and format...</p>
+        <table id="schedule-table">
+        <thead>
+                    <tr>
+                        <th>Poster</th>
+                        <th>Movie Title</th>
+                        <th>Hall</th>
+                        <th>Time</th>
+                        <th>Format</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="images/dune.webp" alt="Dune 3" class="table-poster"> </td>
+                        <td>Dune: Part three</td>
+                        <td>  HALL 1(IMAX)</td>
+                        <td>14:30</td>
+                        <td>3D IMAX</td>
+                        <td>3,500 ₸</td>
+                        <td><a href="booking.html" class="btn">Get Ticket</a></td>
+                    </tr>
+                    <tr>
+                        <td><img src="images/backrooms.jpg" alt="backrooms" class="table-poster" ></td>
+                        <td>Backrooms</td>
+                        <td> HALL 3 </td>
+                        <td>17:15</td>
+                        <td>2D</td>
+                        <td>1,800 ₸</td>
+                        <td><a href="booking.html" class="btn">Get Ticket</a></td>
+                    </tr>
+                    <tr>
+                        <td><img src="images/fall.jpg" alt="fall2" class="table-poster"></td>
+                        <td>Fall 2</td>
+                        <td>HALL 2</td>
+                        <td>20:00</td>
+                        <td>2D ATMOS</td>
+                        <td>2,500 ₸</td>
+                        <td><a href="booking.html" class="btn">Get Ticket</a></td>
+                    </tr>
+                    <tr>
+                    <td><img src="images/i.webp" alt="Odyssey" class="table-poster"> </td>
+                        <td>Odyssey</td>
+                        <td>Hall 1(IMAX)</td>
+                        <td>18:00</td>
+                        <td>2D ATMOS</td>
+                        <td>3,500 ₸</td>
+                    <td><a href="booking.html" class="btn">Get Ticket</a></td>
+                    </tr>
+                    <tr>
+                        <td><img src="images/spider.jpg" alt="Spider Man brand new day" class="table-poster"></td>
+                        <td>Spider-Man: Brand new day</td>
+                        <td> HALL 3 </td>
+                        <td>12:15</td>
+                        <td>2D</td>
+                        <td>1,800 ₸</td>
+                        <td><a href="booking.html" class="btn">Get Ticket</a></td>
+                    </tr>
+                    <tr>
+                        <td><img src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg" alt="Inception" class="table-poster"> </td>
+                        <td>Inception</td>
+                        <td>HALL 2</td>
+                        <td>23:00</td>
+                        <td>2D ATMOS</td>
+                        <td>2,500 ₸</td>
+                        <td><a href="booking.html" class="btn">Get Ticket</a></td>
+                    </tr>
+                </tbody>
+        </table>
+    </main>
+
+    <footer class="grid-footer">
+        <p>&copy; 2026 Cinema Ticket Reservation Service.</p>
+        <p>Project Team: Diyar Umarov, Anuar Muratbay, Aibek Mukhat</p>
+    </footer>
+    </body>
+
+</html>

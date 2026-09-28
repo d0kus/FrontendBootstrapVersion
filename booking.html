@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 
+  Authors: Umarov Diyar, Anuar Muratbay, Aibek Mukhat
+  Group: SE-2507
+  Assignment: #1 HTML & CSS Basics
+-->
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Booking - 404 Cinema</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header id="main-nav">
+    <div class="logo">404 Cinema</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="halls.html">Halls & Tech</a></li>
+      <li><a href="schedule.html">Schedule</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="booking.html">Booking</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+  </header>
+
+  <main class="container">
+
+    <section class="booking-hero">
+      <h1>Book Your Seat Online</h1>
+      <p>No more waiting in line at the box office. Pick a movie, choose where you want to sit and we'll have your ticket ready for you at the counter.</p>
+      <img src="images/hall2.jpeg" alt="VIP hall with leather recliners, one of the halls you can book a seat in" width="700">
+    </section>
+
+    <section class="booking-steps">
+      <h2>How Booking Works</h2>
+      <ol>
+        <li>Pick the movie you want to watch from the list below.</li>
+        <li>Choose your row — Front, Middle or our VIP row.</li>
+        <li>Fill in your name, email and any extra comment for us.</li>
+        <li>Press "Book Now" and we'll send a confirmation to your email.</li>
+      </ol>
+      <p>Tip: seats in the VIP row sell out fastest on weekends, so book a few days ahead if you can.</p>
+    </section>
+
+    <section id="booking-form-section">
+      <h2>Reservation Form</h2>
+
+      <form id="booking-form" class="booking-form">
+
+        <div class="form-group">
+          <label for="fullname">Full Name</label>
+          <input type="text" id="fullname" name="fullname" placeholder="e.g. Anuar Muratbay" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="movie">Choose a Movie</label>
+          <select id="movie" name="movie">
+            <option value="odyssey">The Odyssey (IMAX 3D)</option>
+            <option value="dune3">Dune 3 (Dolby Cinema 2D)</option>
+            <option value="backrooms">Backrooms (Standard 2D)</option>
+            <option value="spiderman">Spider-Man: Brand New Day (4K IMAX)</option>
+            <option value="fall2">Fall 2: Deadpoint (IMAX)</option>
+            <option value="inception">Inception (Dolby Cinema 2D)</option>
+          </select>
+        </div>
+
+        <div class="form-group radio-group">
+          <p>Seat Row</p>
+
+          <label><input type="radio" name="row" value="front" checked> Front row — Economy</label>
+          <label><input type="radio" name="row" value="middle"> Middle row — Standard</label>
+          <label><input type="radio" name="row" value="vip"> VIP row — Premium</label>
+        </div>
+
+        <div class="form-group">
+          <label for="comment">Comment (allergies, wheelchair access, anything we should know)</label>
+          <textarea id="comment" name="comment" rows="4" placeholder="Optional..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Book Now</button>
+
+      </form>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Cinema Ticket Reservation Service.</p>
+    <p>Project Team: Diyar Umarov, Anuar Muratbay, Aibek Mukhat</p>
+  </footer>
+
+</body>
+</html>
