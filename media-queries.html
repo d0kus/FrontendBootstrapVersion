@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- 
+    Authors: Umarov Diyar, Anuar Muratbay, Aibek Mukhat
+    Group: SE-2507
+    Assignment #3: Part 1 - Media Queries
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Queries Demo - 404 Cinema</title>
+  <link rel="stylesheet" href="css/media-queries.css">
+</head>
+<body>
+
+  <!-- Top Navigation (Pure CSS) -->
+  <header class="custom-header">
+    <div class="logo">404 Cinema - Media Queries Showcase</div>
+    <nav>
+      <ul class="custom-nav-links">
+        <li><a href="index.html">&larr; Back to Main Website</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="mq-container">
+
+    <!-- Section 1: Responsive Typography -->
+    <section class="task-section">
+      <div class="task-badge">Fluid Typography System</div>
+      <p class="task-description">
+        Demonstration of fluid text scaling powered purely by CSS media queries across standard viewports (Mobile &lt; 768px, Tablet 768px&ndash;991px, Desktop &ge; 992px).
+      </p>
+
+      <div class="demo-box typography-demo">
+        <div class="screen-indicator">
+          Active Viewport: <span class="indicator-text"></span>
+        </div>
+
+        <h1 class="responsive-heading-1">Responsive Main Heading (H1)</h1>
+        <h2 class="responsive-heading-2">Responsive Subheading (H2)</h2>
+        <h3 class="responsive-heading-3">Responsive Section Heading (H3)</h3>
+        <p class="responsive-paragraph">
+          This paragraph text dynamically adjusts its font size, line-height, and padding based on screen resolution. On mobile screens (&lt; 768px), the text is compact (14px). On tablets (768px - 991px), it scales up to a medium readable size (16px). On desktop screens (&ge; 992px), it expands into a comfortable editorial format (18px) for optimal readability.
+        </p>
+        <p class="responsive-paragraph secondary">
+          Resize your browser window or open DevTools (F12) to observe how headings and body text scale seamlessly between mobile, tablet, and desktop breakpoints.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 2: Card Group (Pure CSS, No Bootstrap) -->
+    <section class="task-section">
+      <div class="task-badge">Multi-Device Card Layout</div>
+      <p class="task-description">
+        Responsive card architecture crafted with pure CSS media queries:
+        <br>&bull; <strong>Desktop (&ge; 992px):</strong> 3 cards side-by-side in one row.
+        <br>&bull; <strong>Tablet (768px &ndash; 991px):</strong> 2 cards in a row with responsive wrapping.
+        <br>&bull; <strong>Mobile (&lt; 768px):</strong> 1 card stacked vertically.
+      </p>
+
+      <div class="pure-css-card-group">
+        <!-- Card 1 -->
+        <article class="pure-card">
+          <div class="pure-card-image">
+            <img src="images/imax1.jpeg" alt="IMAX Laser Auditorium">
+          </div>
+          <div class="pure-card-body">
+            <span class="pure-tag">Format 01</span>
+            <h3 class="pure-card-title">IMAX Laser 4K</h3>
+            <p class="pure-card-text">
+              Dual 4K laser projection with a custom 12-channel sound architecture. Crystal clear brightness for giant screens.
+            </p>
+            <div class="pure-card-footer">
+              <span class="pure-price">From 2,800 ₸</span>
+              <a href="schedule.html" class="pure-btn">Sessions</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="pure-card">
+          <div class="pure-card-image">
+            <img src="images/dolby1.jpeg" alt="Dolby Atmos Sound System">
+          </div>
+          <div class="pure-card-body">
+            <span class="pure-tag">Format 02</span>
+            <h3 class="pure-card-title">Dolby Atmos Room</h3>
+            <p class="pure-card-text">
+              Immersive 360-degree spatial audio with individually amplified ceiling and wall speakers for total realism.
+            </p>
+            <div class="pure-card-footer">
+              <span class="pure-price">From 2,400 ₸</span>
+              <a href="schedule.html" class="pure-btn">Sessions</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="pure-card">
+          <div class="pure-card-image">
+            <img src="images/reclainer1.jpeg" alt="VIP Leather Recliners">
+          </div>
+          <div class="pure-card-body">
+            <span class="pure-tag">Format 03</span>
+            <h3 class="pure-card-title">VIP Lounge Suites</h3>
+            <p class="pure-card-text">
+              Premium electric leather recliners, personal waiter service button, and a private bar lounge before showtime.
+            </p>
+            <div class="pure-card-footer">
+              <span class="pure-price">From 4,500 ₸</span>
+              <a href="schedule.html" class="pure-btn">Sessions</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="custom-footer">
+    <p>&copy; 2026 404 Cinema &bull; Ticket Reservation System</p>
+    <p>Group: SE-2507 | Team: Umarov Diyar, Anuar Muratbay, Aibek Mukhat</p>
+  </footer>
+
+</body>
+</html>

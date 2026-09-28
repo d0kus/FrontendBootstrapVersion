@@ -1,103 +1,283 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
-<!-- 
-  Authors: Umarov Diyar, Anuar Muratbay, Aibek Mukhat
-  Group: SE-2507
-  Assignment: #1 HTML & CSS Basics
--->
-
-
+  <!-- 
+    Authors: Umarov Diyar, Anuar Muratbay, Aibek Mukhat
+    Group: SE-2507
+    Assignment #3: Media Queries + Bootstrap Grid
+  -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Booking - 404 Cinema</title>
+  <title>Online Ticket Booking - 404 Cinema</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Custom CSS (Cinema Dark & Orange Palette) -->
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="bg-dark text-light d-flex flex-column min-vh-100">
 
-  <header id="main-nav">
-    <div class="logo">404 Cinema</div>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="halls.html">Halls & Tech</a></li>
-      <li><a href="schedule.html">Schedule</a></li>
-      <li><a href="pricing.html">Pricing</a></li>
-      <li><a href="booking.html">Booking</a></li>
-      <li><a href="about.html">About Us</a></li>
-    </ul>
+  <!-- Main Navigation Bar -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-warning sticky-top shadow py-3" aria-label="Main Navigation">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-warning fs-3 tracking-wide" href="index.html">
+          404 Cinema
+        </a>
+        <button class="navbar-toggler border-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMain">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-1 align-items-lg-center">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="halls.html">Halls &amp; Tech</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="schedule.html">Schedule</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pricing.html">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active fw-semibold text-warning" aria-current="page" href="booking.html">Booking</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About Us</a>
+            </li>
+            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+              <a class="btn btn-outline-secondary btn-sm text-light px-3" href="media-queries.html" title="Pure CSS Media Queries Demonstration">
+                Responsive Demo
+              </a>
+            </li>
+            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+              <a class="btn btn-warning btn-sm text-white fw-bold px-3 active" href="booking.html">
+                Book Tickets
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </header>
 
-  <main class="container">
+  <main class="flex-grow-1 py-4 py-lg-5">
+    <div class="container">
 
-    <section class="booking-hero">
-      <h1>Book Your Seat Online</h1>
-      <p>No more waiting in line at the box office. Pick a movie, choose where you want to sit and we'll have your ticket ready for you at the counter.</p>
-      <img src="images/hall2.jpeg" alt="VIP hall with leather recliners, one of the halls you can book a seat in" width="700">
-    </section>
+      <!-- Hero Header -->
+      <div class="text-center mb-5">
+        <span class="badge bg-warning text-white text-uppercase px-3 py-2 fw-bold mb-2">Fast &amp; Convenient</span>
+        <h1 class="display-5 fw-bold text-light mb-2">Reserve Your Cinema Seats</h1>
+        <p class="text-secondary lead mx-auto" style="max-width: 700px;">
+          Skip box office lines. Pick your movie, hall tier, and favorite row. An instant QR code reservation will be sent straight to your email.
+        </p>
+      </div>
 
-    <section class="booking-steps">
-      <h2>How Booking Works</h2>
-      <ol>
-        <li>Pick the movie you want to watch from the list below.</li>
-        <li>Choose your row — Front, Middle or our VIP row.</li>
-        <li>Fill in your name, email and any extra comment for us.</li>
-        <li>Press "Book Now" and we'll send a confirmation to your email.</li>
-      </ol>
-      <p>Tip: seats in the VIP row sell out fastest on weekends, so book a few days ahead if you can.</p>
-    </section>
+      <!-- 2-Column Grid Layout (col-lg-5 and col-lg-7) -->
+      <div class="row g-4 g-lg-5 align-items-start">
 
-    <section id="booking-form-section">
-      <h2>Reservation Form</h2>
+        <!-- Column 1: Information, Hall Preview & Steps -->
+        <div class="col-12 col-lg-5">
+          <!-- Hall Preview Card -->
+          <div class="card bg-secondary bg-opacity-10 border-secondary border-opacity-75 shadow-sm mb-4 overflow-hidden rounded-4">
+            <img src="images/hall2.jpeg" class="card-img-top object-fit-cover" style="height: 240px;" alt="VIP Hall recliners">
+            <div class="card-body">
+              <h5 class="card-title text-warning fw-bold mb-2">VIP Recliner Auditoriums</h5>
+              <p class="card-text text-secondary small">
+                Every VIP seat features motorized leg rests, personal lighting, and rapid in-auditorium service.
+              </p>
+              <div class="d-flex gap-2">
+                <span class="badge bg-secondary">Dolby Atmos</span>
+                <span class="badge bg-warning text-white">VIP Service</span>
+                <span class="badge bg-info text-dark">4K Laser</span>
+              </div>
+            </div>
+          </div>
 
-      <form id="booking-form" class="booking-form">
-
-        <div class="form-group">
-          <label for="fullname">Full Name</label>
-          <input type="text" id="fullname" name="fullname" placeholder="e.g. Anuar Muratbay" required>
+          <!-- Step-by-step instructions -->
+          <div class="card bg-secondary bg-opacity-10 border-secondary border-opacity-75 shadow-sm p-4 rounded-4">
+            <h4 class="h5 text-warning fw-bold mb-3">Simple Booking Steps:</h4>
+            <ol class="list-group list-group-numbered list-group-flush bg-transparent text-secondary mb-0">
+              <li class="list-group-item bg-transparent text-light border-secondary border-opacity-25 px-0 py-2">
+                Select your movie title and preferred screening time.
+              </li>
+              <li class="list-group-item bg-transparent text-light border-secondary border-opacity-25 px-0 py-2">
+                Choose seat category (Economy Front, Standard, or Luxury VIP).
+              </li>
+              <li class="list-group-item bg-transparent text-light border-secondary border-opacity-25 px-0 py-2">
+                Enter your contact info for electronic confirmation.
+              </li>
+              <li class="list-group-item bg-transparent text-light border-secondary border-opacity-25 px-0 py-2">
+                Present your digital QR code at entry or at the concessions desk.
+              </li>
+            </ol>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        <!-- Column 2: Responsive Form Design -->
+        <div class="col-12 col-lg-7">
+          <div class="card shadow-lg p-4 p-md-5 rounded-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div>
+                <span class="badge bg-warning text-white px-2 py-1 mb-1 fw-bold">Online Checkout</span>
+                <h2 class="h3 text-light fw-bold mb-0">Ticket Reservation Form</h2>
+              </div>
+              <span class="text-secondary small">All fields marked * are required</span>
+            </div>
+
+            <form id="booking-form" class="needs-validation" novalidate>
+
+              <!-- Full Name -->
+              <div class="mb-3">
+                <label for="fullname" class="form-label fw-semibold text-light">Full Name *</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-dark border-secondary text-warning" id="name-addon">Name</span>
+                  <input type="text" class="form-control bg-dark border-secondary text-light" id="fullname" name="fullname" placeholder="e.g. Diyar Umarov" aria-describedby="name-addon" required>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="mb-3">
+                <label for="email" class="form-label fw-semibold text-light">Email Address *</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-dark border-secondary text-warning" id="email-addon">@</span>
+                  <input type="email" class="form-control bg-dark border-secondary text-light" id="email" name="email" placeholder="you@example.com" aria-describedby="email-addon" required>
+                </div>
+                <div class="form-text text-secondary">Your booking voucher and barcode will be sent here.</div>
+              </div>
+
+              <div class="row g-3 mb-3">
+                <!-- Movie Selection -->
+                <div class="col-12 col-md-7">
+                  <label for="movie" class="form-label fw-semibold text-light">Select Movie *</label>
+                  <select class="form-select bg-dark border-secondary text-light" id="movie" name="movie" required>
+                    <option value="" selected disabled>Choose a feature film...</option>
+                    <option value="odyssey">The Odyssey (IMAX 3D) - 2,800 ₸</option>
+                    <option value="dune3">Dune: Part Three (Dolby Cinema 2D) - 2,600 ₸</option>
+                    <option value="spiderman">Spider-Man: Brand New Day (4K IMAX) - 2,800 ₸</option>
+                    <option value="fall2">Fall 2: Deadpoint (IMAX) - 2,400 ₸</option>
+                    <option value="backrooms">Backrooms (Standard 2D) - 2,200 ₸</option>
+                    <option value="inception">Inception: 15th Anniversary - 2,500 ₸</option>
+                    <option value="interstellar">Interstellar: Space Odyssey (IMAX 70mm) - 3,200 ₸</option>
+                    <option value="avatar">Avatar: Fire and Ash (3D HFR) - 3,000 ₸</option>
+                    <option value="batman">The Batman: Part II (Dolby Atmos) - 2,800 ₸</option>
+                  </select>
+                </div>
+
+                <!-- Session Time -->
+                <div class="col-12 col-md-5">
+                  <label for="sessionTime" class="form-label fw-semibold text-light">Showtime *</label>
+                  <select class="form-select bg-dark border-secondary text-light" id="sessionTime" name="sessionTime" required>
+                    <option value="12:00">12:00 (Morning)</option>
+                    <option value="15:30" selected>15:30 (Matinee)</option>
+                    <option value="18:45">18:45 (Prime time)</option>
+                    <option value="21:30">21:30 (Late Night)</option>
+                    <option value="23:55">23:55 (Midnight)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Seat Row (Radio Buttons) -->
+              <div class="mb-4 p-3 rounded-3 bg-dark border border-secondary border-opacity-50">
+                <label class="form-label fw-bold text-warning mb-2 d-block">Choose Seating Tier *</label>
+
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="radio" name="seatingTier" id="tierFront" value="front">
+                  <label class="form-check-label text-light" for="tierFront">
+                    <strong>Front Rows (Rows 1&ndash;3)</strong> &mdash; Standard sound immersion (Base price)
+                  </label>
+                </div>
+
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="radio" name="seatingTier" id="tierMiddle" value="middle" checked>
+                  <label class="form-check-label text-light" for="tierMiddle">
+                    <strong>Middle Sweet Spot (Rows 4&ndash;8)</strong> &mdash; Optimum acoustic &amp; visual angle
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="seatingTier" id="tierVip" value="vip">
+                  <label class="form-check-label text-light" for="tierVip">
+                    <strong>VIP Premium Row (Back Row)</strong> &mdash; Plush leather electric recliners (+1,500 ₸)
+                  </label>
+                </div>
+              </div>
+
+              <!-- Add-on Extras -->
+              <div class="mb-4">
+                <label class="form-label fw-semibold text-light mb-2">Optional Concession Combos</label>
+
+                <div class="form-check mb-1">
+                  <input class="form-check-input" type="checkbox" id="comboPopcorn" name="addonPopcorn">
+                  <label class="form-check-label text-secondary" for="comboPopcorn">
+                    Add Large Caramel Popcorn &amp; Drink (+1,500 ₸)
+                  </label>
+                </div>
+
+                <div class="form-check mb-1">
+                  <input class="form-check-input" type="checkbox" id="studentDiscountCheck" name="studentDiscount">
+                  <label class="form-check-label text-secondary" for="studentDiscountCheck">
+                    Apply 25% Student Discount (Must present valid student ID at entry)
+                  </label>
+                </div>
+              </div>
+
+              <!-- Comment / Special Needs -->
+              <div class="mb-4">
+                <label for="comment" class="form-label fw-semibold text-light">Special Requests / Accessibility Notes</label>
+                <textarea class="form-control bg-dark border-secondary text-light" id="comment" name="comment" rows="3" placeholder="Wheelchair access, aisle seat preference, or special anniversary notes..."></textarea>
+              </div>
+
+              <!-- Agreement Checkbox -->
+              <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="termsCheck" required checked>
+                <label class="form-check-label small text-secondary" for="termsCheck">
+                  I agree to the 404 Cinema booking terms and understand that tickets can be refunded up to 2 hours before showtime.
+                </label>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-warning btn-lg w-100 fw-bold text-white py-3 shadow-sm">
+                Confirm Reservation &rarr;
+              </button>
+
+            </form>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label for="movie">Choose a Movie</label>
-          <select id="movie" name="movie">
-            <option value="odyssey">The Odyssey (IMAX 3D)</option>
-            <option value="dune3">Dune 3 (Dolby Cinema 2D)</option>
-            <option value="backrooms">Backrooms (Standard 2D)</option>
-            <option value="spiderman">Spider-Man: Brand New Day (4K IMAX)</option>
-            <option value="fall2">Fall 2: Deadpoint (IMAX)</option>
-            <option value="inception">Inception (Dolby Cinema 2D)</option>
-          </select>
-        </div>
-
-        <div class="form-group radio-group">
-          <p>Seat Row</p>
-
-          <label><input type="radio" name="row" value="front" checked> Front row — Economy</label>
-          <label><input type="radio" name="row" value="middle"> Middle row — Standard</label>
-          <label><input type="radio" name="row" value="vip"> VIP row — Premium</label>
-        </div>
-
-        <div class="form-group">
-          <label for="comment">Comment (allergies, wheelchair access, anything we should know)</label>
-          <textarea id="comment" name="comment" rows="4" placeholder="Optional..."></textarea>
-        </div>
-
-        <button type="submit" class="btn-submit">Book Now</button>
-
-      </form>
-
-    </section>
-
+      </div>
+    </div>
   </main>
 
-  <footer>
-    <p>&copy; 2026 Cinema Ticket Reservation Service.</p>
-    <p>Project Team: Diyar Umarov, Anuar Muratbay, Aibek Mukhat</p>
+  <!-- Semantic Accessibility Footer with All Team Members -->
+  <footer class="bg-black text-light py-4 border-top border-secondary mt-auto" aria-label="Site Footer">
+    <div class="container text-center">
+      <div class="row gy-3 align-items-center">
+        <div class="col-12 col-md-4 text-md-start">
+          <span class="fw-bold text-warning fs-5">404 Cinema</span>
+          <p class="text-secondary small mb-0">&copy; 2026 Cinema Ticket Reservation System.</p>
+        </div>
+        <div class="col-12 col-md-4">
+          <p class="text-light fw-semibold mb-1">Group: <span class="text-warning">SE-2507</span></p>
+          <span class="badge bg-secondary text-light">Bootstrap Grid &amp; Media Queries</span>
+        </div>
+        <div class="col-12 col-md-4 text-md-end">
+          <div class="small text-secondary mb-1"><strong>Team Members:</strong></div>
+          <div class="d-flex justify-content-center justify-content-md-end gap-1 flex-wrap">
+            <span class="badge bg-dark border border-secondary text-warning">Umarov Diyar</span>
+            <span class="badge bg-dark border border-secondary text-warning">Anuar Muratbay</span>
+            <span class="badge bg-dark border border-secondary text-warning">Aibek Mukhat</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </footer>
 
+  <!-- Bootstrap 5 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

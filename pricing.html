@@ -1,72 +1,263 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
-<!-- 
-  Authors: Umarov Diyar, Anuar Muratbay, Aibek Mukhat
-  Group: SE-2507
-  Assignment: #1 HTML & CSS Basics
--->
+  <!-- 
+    Authors: Umarov Diyar, Anuar Muratbay, Aibek Mukhat
+    Group: SE-2507
+    Assignment #3: Media Queries + Bootstrap Grid
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing &amp; Offers - 404 Cinema</title>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing & Offers | 404 CINEMA</title>
-    <link rel="stylesheet" href="css/style.css">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Custom CSS (Cinema Dark & Orange Palette) -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="bg-dark text-light d-flex flex-column min-vh-100">
 
-    <header id="main-nav">
-        <div class="logo">404 CINEMA</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="halls.html">Halls & Tech</a></li>
-            <li><a href="schedule.html">Schedule</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
-            <li><a href="booking.html">Booking</a></li>
-            <li><a href="about.html">About Us</a></li>
-        </ul>
-    </header>
+  <!-- Main Navigation Bar -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-warning sticky-top shadow py-3" aria-label="Main Navigation">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-warning fs-3 tracking-wide" href="index.html">
+          404 Cinema
+        </a>
+        <button class="navbar-toggler border-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <main class="container">
-        <h1>Special Discounts & Offers</h1>
-        <p>Explore our discount programs, loyalty tariffs, and ticket refund conditions.</p>
+        <div class="collapse navbar-collapse" id="navbarMain">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-1 align-items-lg-center">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="halls.html">Halls &amp; Tech</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="schedule.html">Schedule</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active fw-semibold text-warning" aria-current="page" href="pricing.html">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="booking.html">Booking</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About Us</a>
+            </li>
+            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+              <a class="btn btn-outline-secondary btn-sm text-light px-3" href="media-queries.html" title="Pure CSS Media Queries Demonstration">
+                Responsive Demo
+              </a>
+            </li>
+            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+              <a class="btn btn-warning btn-sm text-white fw-bold px-3" href="booking.html">
+                Book Tickets
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-        <h2>Promotions</h2>
-        <div class="movie-grid" style="margin-bottom: 40px;">
-            <div class="movie-card" style="width: 290px;">
-                <h3>Student Discount</h3>
-                <p>Get a 25% discount on all sessions from Monday to Wednesday by showing a valid student ID.</p>
-                <button class="btn">Learn More</button>
-            </div>
-            <div class="movie-card" style="width: 290px;">
-                <h3>Family Tuesday</h3>
-                <p>Special package prices when purchasing 3 or more tickets for family daytime screenings.</p>
-                <button class="btn">Learn More</button>
-            </div>
-            <div class="movie-card" style="width: 290px;">
-                <h3>Night Screenings</h3>
-                <p>Reduced rates for late-night sessions starting after 11:00 PM on weekends.</p>
-                <button class="btn">Learn More</button>
-            </div>
+  <main class="flex-grow-1 py-4 py-lg-5">
+    <div class="container">
+
+      <!-- Hero Header -->
+      <div class="text-center mb-5">
+        <span class="badge bg-warning text-white text-uppercase px-3 py-2 fw-bold mb-2">Transparent Pricing</span>
+        <h1 class="display-5 fw-bold text-light mb-2">Pricing, Packages &amp; Offers</h1>
+        <p class="text-secondary lead mx-auto" style="max-width: 720px;">
+          Find the best screening rates for students, families, late-night cinema fans, and private screenings.
+        </p>
+      </div>
+
+      <!-- Special Promotional Cards (3-column Grid col-lg-4) -->
+      <section class="mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 class="h3 fw-bold text-light mb-0">Active Cinema Promotions</h2>
+          <span class="badge bg-warning text-white">Special Rates</span>
         </div>
 
-        <h2>Ticket Refund Policy</h2>
-        <div class="movie-card" style="max-width: 100%; width: 100%; margin-bottom: 40px;">
-            <p><strong>• 100% Refund:</strong> Available if cancelled at least 30 minutes before the session starts.</p>
-            <p><strong>• 80% Refund:</strong> Cancellations made within 30 minutes prior to the movie are subject to a 20% service fee.</p>
-            <p><strong>• No Refund:</strong> Refunds cannot be issued after the session has officially started.</p>
-        </div>
+        <div class="row g-4">
+          <!-- Promo Card 1 -->
+          <div class="col-12 col-md-4 col-lg-4">
+            <div class="card h-100 p-4 rounded-4 shadow-sm hover-card">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="badge bg-warning text-white fw-bold">Student Privilege</span>
+                <span class="text-warning fw-bold fs-5">25% OFF</span>
+              </div>
+              <h4 class="h5 fw-bold text-light mb-2">Student Discount</h4>
+              <p class="text-secondary small flex-grow-1">
+                Valid Monday to Friday across all standard, 3D, and IMAX sessions. Simply show your university student ID card upon entry.
+              </p>
+              <div class="mt-3 pt-3 border-top border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
+                <span class="text-warning fw-bold">From 1,800 ₸</span>
+                <a href="booking.html" class="btn btn-warning btn-sm fw-semibold text-white">Book Now</a>
+              </div>
+            </div>
+          </div>
 
-        <h2>Page Developer</h2>
-        <div class="team-card">
-            <img src="https://i.pinimg.com/736x/7c/bb/18/7cbb18735efaaf91a6862b69ee807e80.jpg" alt="Aibek" class="avatar-circle">
-            <h3>Aibek</h3>
-            <p style="color: #f97316; font-weight: bold;">Frontend Developer</p>
-            <p>Responsible for creating the "Schedule" and "Pricing & Offers" pages, including table markup, promotional blocks, and stylesheet integration.</p>
+          <!-- Promo Card 2 -->
+          <div class="col-12 col-md-4 col-lg-4">
+            <div class="card h-100 p-4 rounded-4 shadow-sm hover-card">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="badge bg-info text-dark fw-bold">Family Bundle</span>
+                <span class="text-info fw-bold fs-5">Save 20%</span>
+              </div>
+              <h4 class="h5 fw-bold text-light mb-2">Family Tuesday</h4>
+              <p class="text-secondary small flex-grow-1">
+                Purchase 3 or more tickets for daytime family screenings and receive a complimentary large popcorn and drink package.
+              </p>
+              <div class="mt-3 pt-3 border-top border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
+                <span class="text-info fw-bold">Family Matinee</span>
+                <a href="booking.html" class="btn btn-outline-info btn-sm fw-semibold">Learn More</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Promo Card 3 -->
+          <div class="col-12 col-md-4 col-lg-4">
+            <div class="card h-100 p-4 rounded-4 shadow-sm hover-card">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="badge bg-secondary text-light fw-bold">Night Owls</span>
+                <span class="text-warning fw-bold fs-5">Special Rate</span>
+              </div>
+              <h4 class="h5 fw-bold text-light mb-2">Midnight Screenings</h4>
+              <p class="text-secondary small flex-grow-1">
+                Enjoy atmospheric thriller, sci-fi, and horror marathons starting after 23:00 on Fridays and Saturdays with special night rates.
+              </p>
+              <div class="mt-3 pt-3 border-top border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
+                <span class="text-warning fw-bold">Fixed 2,000 ₸</span>
+                <a href="booking.html" class="btn btn-outline-warning btn-sm fw-semibold">Check Times</a>
+              </div>
+            </div>
+          </div>
         </div>
-    </main>
-   <footer>
-        <p>&copy; 2026 Cinema Ticket Reservation Service.</p>
-        <p>Project Team: Diyar Umarov, Anuar Muratbay, Aibek Mukhat</p>
-     </footer>
+      </section>
+
+      <!-- Standard Ticket Rates Matrix -->
+      <section class="mb-5">
+        <h3 class="h4 fw-bold text-warning mb-3">Standard Ticket Price Matrix</h3>
+        <div class="table-responsive rounded-3 border border-secondary shadow-sm">
+          <table class="table table-dark table-hover table-striped mb-0 text-center">
+            <thead class="table-black border-bottom border-warning">
+              <tr>
+                <th scope="col" class="py-3 px-4 text-start text-warning">Auditorium / Format</th>
+                <th scope="col" class="py-3 px-4 text-warning">Morning (Before 14:00)</th>
+                <th scope="col" class="py-3 px-4 text-warning">Standard (14:00 &ndash; 18:00)</th>
+                <th scope="col" class="py-3 px-4 text-warning">Evening Prime (After 18:00)</th>
+                <th scope="col" class="py-3 px-4 text-warning">Student Rate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-start px-4 py-3 fw-semibold">Standard 2D Screen</td>
+                <td class="px-4 py-3">1,800 ₸</td>
+                <td class="px-4 py-3">2,200 ₸</td>
+                <td class="px-4 py-3">2,500 ₸</td>
+                <td class="px-4 py-3 text-warning fw-bold">1,650 ₸</td>
+              </tr>
+              <tr>
+                <td class="text-start px-4 py-3 fw-semibold">Dolby Cinema 2D / 3D</td>
+                <td class="px-4 py-3">2,200 ₸</td>
+                <td class="px-4 py-3">2,600 ₸</td>
+                <td class="px-4 py-3">2,900 ₸</td>
+                <td class="px-4 py-3 text-warning fw-bold">1,950 ₸</td>
+              </tr>
+              <tr>
+                <td class="text-start px-4 py-3 fw-semibold">4K IMAX Laser 3D</td>
+                <td class="px-4 py-3">2,400 ₸</td>
+                <td class="px-4 py-3">2,800 ₸</td>
+                <td class="px-4 py-3">3,200 ₸</td>
+                <td class="px-4 py-3 text-warning fw-bold">2,100 ₸</td>
+              </tr>
+              <tr>
+                <td class="text-start px-4 py-3 fw-semibold">VIP Premium Lounge</td>
+                <td class="px-4 py-3">3,800 ₸</td>
+                <td class="px-4 py-3">4,500 ₸</td>
+                <td class="px-4 py-3">5,000 ₸</td>
+                <td class="px-4 py-3 text-warning fw-bold">3,750 ₸</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Ticket Refund Policy -->
+      <section class="mb-5">
+        <div class="card bg-secondary bg-opacity-10 border-secondary border-opacity-75 p-4 rounded-4 shadow-sm">
+          <div class="mb-3">
+            <h3 class="h4 fw-bold text-light mb-0">Ticket Refund &amp; Cancellation Policy</h3>
+          </div>
+          <div class="row g-3">
+            <div class="col-12 col-md-4">
+              <div class="p-3 bg-dark rounded-3 border border-success border-opacity-50">
+                <span class="badge bg-success mb-2">100% Full Refund</span>
+                <p class="small text-secondary mb-0">Cancel more than 30 minutes before showtime for an automatic 100% instant card refund.</p>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="p-3 bg-dark rounded-3 border border-warning border-opacity-50">
+                <span class="badge bg-warning text-white mb-2">80% Partial Refund</span>
+                <p class="small text-secondary mb-0">Cancellations made within 30 minutes prior to movie start incur a 20% processing fee.</p>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="p-3 bg-dark rounded-3 border border-danger border-opacity-50">
+                <span class="badge bg-danger mb-2">No Refund</span>
+                <p class="small text-secondary mb-0">Refund requests cannot be accepted after the auditorium projector has started.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Page Developer Bio -->
+      <section class="card bg-secondary bg-opacity-10 border-secondary border-opacity-50 p-4 rounded-4 shadow-sm">
+        <div class="d-flex align-items-center gap-3">
+          <img src="https://i.pinimg.com/736x/7c/bb/18/7cbb18735efaaf91a6862b69ee807e80.jpg" alt="Aibek Mukhat" class="rounded-circle border border-warning border-2 object-fit-cover" style="width: 70px; height: 70px;">
+          <div>
+            <h4 class="h5 fw-bold text-warning mb-1">Aibek Mukhat</h4>
+            <span class="badge bg-secondary mb-1">Page Architect</span>
+            <p class="text-secondary small mb-0">Engineered the responsive promotional cards, price matrix tables, and policy layouts for <strong>pricing.html</strong>.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Semantic Accessibility Footer with All Team Members -->
+  <footer class="bg-black text-light py-4 border-top border-secondary mt-auto" aria-label="Site Footer">
+    <div class="container text-center">
+      <div class="row gy-3 align-items-center">
+        <div class="col-12 col-md-4 text-md-start">
+          <span class="fw-bold text-warning fs-5">404 Cinema</span>
+          <p class="text-secondary small mb-0">&copy; 2026 Cinema Ticket Reservation System.</p>
+        </div>
+        <div class="col-12 col-md-4">
+          <p class="text-light fw-semibold mb-1">Group: <span class="text-warning">SE-2507</span></p>
+          <span class="badge bg-secondary text-light">Bootstrap Grid &amp; Media Queries</span>
+        </div>
+        <div class="col-12 col-md-4 text-md-end">
+          <div class="small text-secondary mb-1"><strong>Team Members:</strong></div>
+          <div class="d-flex justify-content-center justify-content-md-end gap-1 flex-wrap">
+            <span class="badge bg-dark border border-secondary text-warning">Umarov Diyar</span>
+            <span class="badge bg-dark border border-secondary text-warning">Anuar Muratbay</span>
+            <span class="badge bg-dark border border-secondary text-warning">Aibek Mukhat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
