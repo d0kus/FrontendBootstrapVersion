@@ -4,16 +4,15 @@
   <!-- 
     Authors: Umarov Diyar, Anuar Muratbay, Aibek Mukhat
     Group: SE-2507
-    Assignment #3: Media Queries + Bootstrap Grid
   -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>404 Cinema - Ultimate Movie Experience</title>
 
-  <!-- Bootstrap 5 CSS -->
+  <!-- Bootstrap connection -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-  <!-- Custom CSS (Cinema Dark & Orange Palette) -->
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-dark text-light d-flex flex-column min-vh-100">
@@ -22,8 +21,8 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-warning sticky-top shadow py-3" aria-label="Main Navigation">
       <div class="container">
-        <a class="navbar-brand fw-bold text-warning fs-3 tracking-wide" href="index.html">
-          404 Cinema
+        <a class="navbar-brand d-inline-flex align-items-center py-0" href="index.html" aria-label="404 Cinema Home">
+          <img src="images/logo.svg" alt="404 Cinema" height="38" class="d-inline-block">
         </a>
         <button class="navbar-toggler border-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation menu">
           <span class="navbar-toggler-icon"></span>
@@ -67,7 +66,7 @@
 
   <main class="flex-grow-1">
 
-    <!-- Featured Premieres Carousel (9 Slides) -->
+    <!-- Carousel-->
     <section class="container my-4 my-lg-5" aria-label="Featured Movie Premieres">
       <div id="cinemaHeroCarousel" class="carousel slide carousel-fade shadow-lg rounded-4 overflow-hidden border border-secondary" data-bs-ride="carousel" data-bs-interval="4500">
         <!-- 9 Indicators -->
@@ -86,31 +85,31 @@
         <!-- 9 Movie Slides -->
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="images/the-odyssey-blu-ray-streaming-date.avif" class="d-block w-100 object-fit-cover" style="height: 520px;" alt="The Odyssey">
+            <img src="images/the-odyssey-blu-ray-streaming-date.avif" class="d-block w-100 carousel-hero-img" alt="The Odyssey">
           </div>
           <div class="carousel-item">
-            <img src="images/Dune-Part-Three-Horizontal-15-e1783535178816.webp" class="d-block w-100 object-fit-cover" style="height: 520px;" alt="Dune: Part Three">
+            <img src="images/Dune-Part-Three-Horizontal-15-e1783535178816.webp" class="d-block w-100 carousel-hero-img" alt="Dune: Part Three">
           </div>
           <div class="carousel-item">
-            <img src="images/spidermannew.jpg" class="d-block w-100 object-fit-cover" style="height: 520px;" alt="Spider-Man: Brand New Day">
+            <img src="images/spidermannew.jpg" class="d-block w-100 carousel-hero-img" alt="Spider-Man: Brand New Day">
           </div>
           <div class="carousel-item">
-            <img src="images/fall_2_11zon_1789143597.webp" class="d-block w-100 object-fit-cover" style="height: 520px;" alt="Fall 2: Deadpoint">
+            <img src="images/fall_2_11zon_1789143597.webp" class="d-block w-100 carousel-hero-img" alt="Fall 2: Deadpoint">
           </div>
           <div class="carousel-item">
-            <img src="images/backroomss.jpg" class="d-block w-100 object-fit-cover" style="height: 520px;" alt="Backrooms">
+            <img src="images/backroomss.jpg" class="d-block w-100 carousel-hero-img" alt="Backrooms">
           </div>
           <div class="carousel-item">
-            <img src="images/inception11.jpg" class="d-block w-100 object-fit-cover" style="height: 520px;" alt="Inception">
+            <img src="images/inception11.jpg" class="d-block w-100 carousel-hero-img" alt="Inception">
           </div>
           <div class="carousel-item">
-            <img src="images/interstell.webp" class="d-block w-100 object-fit-cover" style="height: 520px;" alt="Interstellar">
+            <img src="images/interstell.webp" class="d-block w-100 carousel-hero-img" alt="Interstellar">
           </div>
           <div class="carousel-item">
-            <img src="images/avatar.jpg" class="d-block w-100 object-fit-cover" style="height: 520px;" alt="Avatar: Fire and Ash">
+            <img src="images/avatar.jpg" class="d-block w-100 carousel-hero-img" alt="Avatar: Fire and Ash">
           </div>
           <div class="carousel-item">
-            <img src="images/batman2.jpg" class="d-block w-100 object-fit-cover" style="height: 520px;" alt="The Batman: Part II">
+            <img src="images/batman2.jpg" class="d-block w-100 carousel-hero-img" alt="The Batman: Part II">
           </div>
         </div>
 
@@ -322,7 +321,7 @@
       </div>
     </section>
 
-    <!-- Student Discount Callout Section -->
+    <!-- Student Discount Section -->
     <section class="container pb-5">
       <div class="card p-4 p-md-5 rounded-4 shadow-sm d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
         <div>
@@ -338,7 +337,7 @@
 
   </main>
 
-  <!-- Semantic Accessibility Footer with All Team Members -->
+  <!-- Footer -->
   <footer class="bg-black text-light py-4 border-top border-secondary mt-auto" aria-label="Site Footer">
     <div class="container text-center">
       <div class="row gy-3 align-items-center">
@@ -347,11 +346,10 @@
           <p class="text-secondary small mb-0">&copy; 2026 Cinema Ticket Reservation System.</p>
         </div>
         <div class="col-12 col-md-4">
-          <p class="text-light fw-semibold mb-1">Group: <span class="text-warning">SE-2507</span></p>
-          <span class="badge bg-secondary text-light">Bootstrap Grid &amp; Media Queries</span>
+          <p class="text-light fw-semibold mb-0">Group: <span class="text-warning">SE-2507</span></p>
         </div>
         <div class="col-12 col-md-4 text-md-end">
-          <div class="small text-secondary mb-1"><strong>Team Members:</strong></div>
+          <div class="small text-secondary mb-1"><strong>Team:</strong></div>
           <div class="d-flex justify-content-center justify-content-md-end gap-1 flex-wrap">
             <span class="badge bg-dark border border-secondary text-warning">Umarov Diyar</span>
             <span class="badge bg-dark border border-secondary text-warning">Anuar Muratbay</span>

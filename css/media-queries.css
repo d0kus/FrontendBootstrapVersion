@@ -1,8 +1,3 @@
-/* 
-  Part 1. Media Queries (CSS Only - No Bootstrap)
-  Task 1. Responsive Typography
-  Task 2. Card Group (3 on desktop, 2 on tablet, 1 on mobile)
-*/
 
 * {
   margin: 0;
@@ -17,7 +12,7 @@ body {
   line-height: 1.6;
 }
 
-/* Header & Navigation (Pure CSS) */
+/* Header & Navigation */
 .custom-header {
   background-color: #1a1c23;
   padding: 16px 24px;
@@ -138,7 +133,7 @@ body {
 }
 
 /* =========================================================
-   TASK 1: RESPONSIVE TYPOGRAPHY (MEDIA QUERIES)
+   RESPONSIVE TYPOGRAPHY (MEDIA QUERIES)
    - Mobile: Small font size (< 768px)
    - Tablet: Medium font size (768px - 991px)
    - Desktop: Large font size (>= 992px)
@@ -250,7 +245,7 @@ body {
 }
 
 /* =========================================================
-   TASK 2: CARD GROUP (PURE CSS MEDIA QUERIES, NO BOOTSTRAP)
+  CARD GROUP (PURE CSS MEDIA QUERIES, NO BOOTSTRAP)
    - Desktop (>= 992px): 3 cards side by side
    - Tablet (768px - 991px): 2 cards in a row
    - Mobile (< 768px): 1 card stacked vertically
