@@ -27,11 +27,37 @@
 
 According to project requirements, each team member is responsible for at least two complete HTML pages:
 
-| Team Member | Role & Responsibilities | Assigned Pages |
-| :--- | :--- | :--- |
-| **Umarov Diyar** | Main Landing Page, Hero Carousel & Cinema Auditorium Specs | 1. [`index.html`](index.html)<br>2. [`halls.html`](halls.html) |
-| **Aibek Mukhat** | Movie Timetable, Pricing Matrix & Pure CSS Media Queries Showcase | 1. [`schedule.html`](schedule.html)<br>2. [`pricing.html`](pricing.html)<br>3. [`media-queries.html`](media-queries.html) |
-| **Anuar Muratbay** | Online Seat Booking System, About Us & Team Story | 1. [`booking.html`](booking.html)<br>2. [`about.html`](about.html) |
+| Team Member | Role & Responsibilities | Assigned Pages | Interactive JS Features |
+| :--- | :--- | :--- | :--- |
+| **Umarov Diyar** | Main Landing Page, Hero Carousel & Cinema Auditorium Specs | 1. [`index.html`](index.html)<br>2. [`halls.html`](halls.html) | Form Validation (RegExp, password length & match, error messages) |
+| **Aibek Mukhat** | Movie Timetable, Pricing Matrix & Pure CSS Media Queries Showcase | 1. [`schedule.html`](schedule.html)<br>2. [`pricing.html`](pricing.html)<br>3. [`media-queries.html`](media-queries.html) | FAQ Accordion & Popup Modal Subscription Dialog |
+| **Anuar Muratbay** | Online Seat Booking System, About Us & Team Story | 1. [`booking.html`](booking.html)<br>2. [`about.html`](about.html) | Background Color Switcher & Live Dynamic Clock |
+
+---
+
+## ⚡ Interactive JavaScript Features
+
+The project includes five interactive Vanilla JavaScript components:
+
+1. **Form Validation** (`js/main.js`):
+   - Real-time and submit validation for VIP Club registration.
+   - Required fields, RegExp email syntax validation, password length check (min 8 characters), and strict password confirmation match.
+   - Dynamic error messaging (`.is-invalid`, `.is-valid`).
+   - Bonus validation integrated into the seat booking form on `booking.html`.
+2. **FAQ Accordion** (`js/main.js`):
+   - Smooth animated Q&A accordion on `index.html`.
+   - Built on pure Vanilla JavaScript without third-party accordion dependencies.
+   - Calculates dynamic `scrollHeight` for smooth CSS height transitions.
+3. **Popup Modal** (`js/main.js`):
+   - Hidden by default, animated overlay and dialog card.
+   - Opens via "Join VIP Club" buttons.
+   - Closes via close button (&times;), clicking outside (backdrop), or pressing `Escape`.
+4. **Theme Switcher (Background Color)** (`js/main.js`):
+   - Cycles through curated ambient cinema color palettes (Obsidian Dark, Velvet Cinema, Deep IMAX Navy, Emerald Hall, Vintage Noir).
+   - Dynamically modifies `backgroundColor` and CSS root variables with smooth transitions.
+5. **Live Clock & Date** (`js/main.js`):
+   - Uses JavaScript's `Date` object and `setInterval()`.
+   - Displays real-time local clock in the top utility header (e.g., *"October 19, 2026, 09:15:30 PM"*).
 
 ---
 

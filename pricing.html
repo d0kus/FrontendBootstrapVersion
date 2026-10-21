@@ -17,9 +17,28 @@
 </head>
 <body class="bg-dark text-light d-flex flex-column min-vh-100">
 
-  <!-- Main Navigation Bar -->
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-warning sticky-top shadow py-3" aria-label="Main Navigation">
+  <!-- Main Navigation Bar & Header Utility -->
+  <header class="sticky-top shadow">
+    <!-- Utility Bar: Live Clock & Theme Switcher -->
+    <div class="bg-black border-bottom border-secondary border-opacity-25 py-1 px-3 small text-secondary">
+      <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <!-- Live Clock -->
+        <div class="d-flex align-items-center gap-2" id="liveClock">
+          <span class="clock-pulse-dot" title="Live Clock Active"></span>
+          <span class="text-secondary small">Astana Time:</span>
+          <span id="clockText" class="fw-semibold text-warning small">Loading time...</span>
+        </div>
+
+        <!-- Theme Switcher -->
+        <div class="d-flex align-items-center gap-2 ms-auto">
+          <button id="themeToggleBtn" type="button" class="btn btn-sm btn-outline-secondary text-light py-0 px-2" title="Click to switch background theme">
+            🎨 <span class="d-none d-sm-inline">Theme:</span> <span id="themeNameLabel" class="text-warning fw-bold">Obsidian Dark</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-warning py-3" aria-label="Main Navigation">
       <div class="container">
         <a class="navbar-brand d-inline-flex align-items-center py-0" href="index.html" aria-label="404 Cinema Home">
           <img src="images/logo.svg" alt="404 Cinema" height="38" class="d-inline-block">
@@ -257,5 +276,8 @@
 
   <!-- Bootstrap 5 Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <!-- Custom Scripts -->
+  <script src="js/main.js"></script>
 </body>
 </html>
