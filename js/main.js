@@ -1,44 +1,71 @@
 /**
- * 404 Cinema
+ * 404 Cinema - Interactive JavaScript
+ * Assignment 5: Advanced JS & DOM Manipulation
  * Group: SE-2507
- * Authors:
- *   - Umarov Diyar
- *   - Aibek Mukhat
- *   - Anuar Muratbay
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Live Clock
-  const clockElement = document.getElementById('clockText');
+  // ==========================================================================
+  // 1. Web Audio Sound Engine (Part 1.3: Play Sounds)
+  // ==========================================================================
+  let audioCtx = null;
 
-  function updateClock() {
-    if (!clockElement) return;
+  function playUiSound(freq = 580) {
+    try {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return;
+      if (!audioCtx) audioCtx = new AudioContextClass();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
 
-    const now = new Date();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
 
-    const options = {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false
-    };
-
-    const formattedDateTime = now.toLocaleDateString('en-US', options);
-    clockElement.textContent = formattedDateTime;
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.15);
+    } catch (e) {
+      console.warn('Audio not available', e);
+    }
   }
 
+  // Sound Button in Utility Bar
+  const soundBtn = document.getElementById('soundBtn');
+  if (soundBtn) {
+    soundBtn.addEventListener('click', () => {
+      playUiSound(660);
+      soundBtn.style.transform = 'scale(1.1)';
+      setTimeout(() => { soundBtn.style.transform = 'scale(1)'; }, 150);
+    });
+  }
+
+
+  // ==========================================================================
+  // 2. Live Dynamic Clock (Part 1.2: Event Listeners & Time)
+  // ==========================================================================
+  const clockElement = document.getElementById('clockText');
+  function updateClock() {
+    if (!clockElement) return;
+    const now = new Date();
+    clockElement.textContent = now.toLocaleDateString('en-US', {
+      year: 'numeric', month: 'long', day: 'numeric',
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+    });
+  }
   updateClock();
   setInterval(updateClock, 1000);
 
 
-  // Background Color Theme Switcher
+  // ==========================================================================
+  // 3. Theme Switcher (Part 1.1: Dynamic Style Changes - style.backgroundColor)
+  // ==========================================================================
   const themeToggleBtn = document.getElementById('themeToggleBtn');
   const themeNameLabel = document.getElementById('themeNameLabel');
-
   const cinemaThemes = [
     { name: "Obsidian Dark", bg: "#121316", surface: "#1a1c23" },
     { name: "Velvet Cinema", bg: "#1d0e17", surface: "#291421" },
@@ -46,18 +73,17 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: "Emerald Hall",  bg: "#0a1914", surface: "#10251e" },
     { name: "Vintage Noir",   bg: "#18181b", surface: "#27272a" }
   ];
-
   let currentThemeIndex = 0;
 
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {
+      playUiSound(500);
       currentThemeIndex = (currentThemeIndex + 1) % cinemaThemes.length;
       const theme = cinemaThemes[currentThemeIndex];
 
       document.body.style.backgroundColor = theme.bg;
       document.documentElement.style.setProperty('--cinema-bg', theme.bg);
       document.documentElement.style.setProperty('--cinema-surface', theme.surface);
-
       document.body.style.transition = 'background-color 0.4s ease';
 
       if (themeNameLabel) {
@@ -67,9 +93,264 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // FAQ Accordion
-  const accordionHeaders = document.querySelectorAll('.cinema-accordion-header');
+  // ==========================================================================
+  // 4. Keyboard Navigation for Menu (Part 1.2: keydown & switch statement)
+  // ==========================================================================
+  const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+  let currentNavIndex = 0;
 
+  window.addEventListener('keydown', (e) => {
+    // Skip if typing in an input field
+    if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName)) return;
+
+    let targetIdx = null;
+
+    // Switch statement controlling logic based on key press
+    switch (e.key) {
+      case 'ArrowRight':
+      case 'ArrowDown':
+        targetIdx = (currentNavIndex + 1) % navLinks.length;
+        break;
+      case 'ArrowLeft':
+      case 'ArrowUp':
+        targetIdx = (currentNavIndex - 1 + navLinks.length) % navLinks.length;
+        break;
+    }
+
+    if (targetIdx !== null && navLinks[targetIdx]) {
+      e.preventDefault();
+      currentNavIndex = targetIdx;
+      navLinks[targetIdx].focus();
+      playUiSound(440);
+
+      const navNotice = document.getElementById('keyboardNavNotice');
+      if (navNotice) {
+        navNotice.textContent = `Keyboard focus: ${navLinks[targetIdx].textContent.trim()}`;
+        navNotice.classList.remove('d-none');
+        clearTimeout(navNotice._timer);
+        navNotice._timer = setTimeout(() => navNotice.classList.add('d-none'), 2000);
+      }
+    }
+  });
+
+
+  // ==========================================================================
+  // 5. Format Filter with Switch Statement (Part 1.2: Switch Statements)
+  // ==========================================================================
+  const filterBtns = document.querySelectorAll('.format-filter-btn');
+  const movieCards = document.querySelectorAll('.movie-card-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      playUiSound(540);
+      filterBtns.forEach(b => {
+        b.classList.remove('btn-warning', 'active', 'text-white');
+        b.classList.add('btn-outline-secondary', 'text-light');
+      });
+      btn.classList.remove('btn-outline-secondary', 'text-light');
+      btn.classList.add('btn-warning', 'active', 'text-white');
+
+      const filterType = btn.getAttribute('data-filter');
+      let targetCategory = '';
+
+      // Switch statement controlling filtering logic
+      switch (filterType) {
+        case 'imax':
+          targetCategory = 'imax';
+          break;
+        case 'dolby':
+          targetCategory = 'dolby';
+          break;
+        case 'standard':
+          targetCategory = 'standard';
+          break;
+        case 'all':
+        default:
+          targetCategory = 'all';
+          break;
+      }
+
+      // DOM manipulation: style.display
+      movieCards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        if (targetCategory === 'all' || category === targetCategory) {
+          card.style.display = ''; // Restore default grid layout
+        } else {
+          card.style.display = 'none'; // Hide filtered out card
+        }
+      });
+    });
+  });
+
+
+  // ==========================================================================
+  // 6. Star Rating Component (Part 1.1: Manipulating Attributes & querySelectorAll)
+  // ==========================================================================
+  const stars = document.querySelectorAll('#cinemaStarRating .star-item');
+  const ratingText = document.getElementById('ratingFeedback');
+
+  stars.forEach(star => {
+    star.addEventListener('click', () => {
+      const val = parseInt(star.getAttribute('data-value'), 10) || 1;
+      playUiSound(720);
+
+      // Manipulate attributes and styles on star collection
+      stars.forEach(s => {
+        const sVal = parseInt(s.getAttribute('data-value'), 10);
+        if (sVal <= val) {
+          s.classList.add('active');
+          s.style.color = '#f59e0b';
+        } else {
+          s.classList.remove('active');
+          s.style.color = '#64748b';
+        }
+      });
+
+      // Event-triggered animation
+      star.style.transform = 'scale(1.35)';
+      setTimeout(() => { star.style.transform = 'scale(1)'; }, 180);
+
+      // Dynamic text modification
+      if (ratingText) {
+        ratingText.textContent = `★ You rated this experience ${val} / 5 stars! Thank you!`;
+        ratingText.style.color = '#f97316';
+      }
+    });
+  });
+
+
+  // ==========================================================================
+  // 7. Objects, Methods, Arrays & Loops (Part 1.3: JavaScript Advanced Concepts)
+  // ==========================================================================
+  const cinemaInfo = {
+    name: "404 Cinema",
+    highlights: ["4K Dual-Laser IMAX", "Dolby Atmos 64-Ch", "VIP Electric Recliners"],
+    // Object Method
+    getInfo() {
+      return `${this.name} features ${this.highlights.length} premium tech halls`;
+    }
+  };
+
+  const highlightsContainer = document.getElementById('dynamicHighlights');
+  if (highlightsContainer) {
+    // Array iteration using standard for loop
+    for (let i = 0; i < cinemaInfo.highlights.length; i++) {
+      const badge = document.createElement('span');
+      badge.className = 'badge bg-dark border border-secondary text-warning';
+      badge.textContent = `✔ ${cinemaInfo.highlights[i]}`;
+      highlightsContainer.appendChild(badge);
+    }
+  }
+
+  const summaryElement = document.getElementById('cinemaInfoSummary');
+  if (summaryElement) {
+    summaryElement.textContent = cinemaInfo.getInfo();
+  }
+
+  // Higher-Order Function demo (filter)
+  const filteredHighlights = cinemaInfo.highlights.filter(h => h.includes('IMAX'));
+
+
+  // ==========================================================================
+  // 8. Responding to Events with Callbacks & Reset Button (Part 1.2)
+  // ==========================================================================
+  function fakeAsyncBooking(data, callback) {
+    // Simulating async submission with callback function
+    setTimeout(() => {
+      callback({
+        success: true,
+        code: 'CINEMA-' + Math.floor(1000 + Math.random() * 9000),
+        email: data.email
+      });
+    }, 300);
+  }
+
+  // Strict Email Regex (letters/digits before @, valid domain, at least 2-letter TLD)
+  const strictEmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  const bookingForm = document.getElementById('booking-form');
+  if (bookingForm) {
+    const bName = document.getElementById('fullname');
+    const bEmail = document.getElementById('email');
+    const bMovie = document.getElementById('movie');
+
+    // Live validation on email input
+    if (bEmail) {
+      bEmail.addEventListener('input', () => {
+        const val = bEmail.value.trim();
+        if (strictEmailRegex.test(val)) {
+          bEmail.classList.remove('is-invalid');
+          bEmail.classList.add('is-valid');
+        } else {
+          bEmail.classList.remove('is-valid');
+        }
+      });
+    }
+
+    bookingForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let isValid = true;
+
+      if (!bName || !bName.value.trim() || bName.value.trim().length < 3) {
+        if (bName) bName.classList.add('is-invalid');
+        isValid = false;
+      } else {
+        bName.classList.remove('is-invalid');
+      }
+
+      if (!bEmail || !strictEmailRegex.test(bEmail.value.trim())) {
+        if (bEmail) {
+          bEmail.classList.remove('is-valid');
+          bEmail.classList.add('is-invalid');
+        }
+        isValid = false;
+      } else {
+        bEmail.classList.remove('is-invalid');
+        bEmail.classList.add('is-valid');
+      }
+
+      if (isValid) {
+        // Callback function usage
+        fakeAsyncBooking({ name: bName.value, email: bEmail.value }, (res) => {
+          playUiSound(750);
+          let alertBox = document.getElementById('bookingSuccessAlert');
+          if (!alertBox) {
+            alertBox = document.createElement('div');
+            alertBox.id = 'bookingSuccessAlert';
+            alertBox.className = 'alert alert-success alert-dismissible fade show mt-3';
+            alertBox.role = 'alert';
+            bookingForm.prepend(alertBox);
+          }
+          alertBox.innerHTML = `<strong>🎟️ Booking Confirmed! [Code: ${res.code}]</strong> Voucher sent to <u>${res.email}</u>.`;
+          bookingForm.reset();
+        });
+      }
+    });
+
+    // Reset button clears all inputs using querySelectorAll
+    const resetBtn = document.getElementById('resetBookingBtn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        playUiSound(400);
+        document.querySelectorAll('#booking-form input, #booking-form select, #booking-form textarea').forEach(input => {
+          if (input.type === 'checkbox' || input.type === 'radio') {
+            input.checked = input.defaultChecked;
+          } else {
+            input.value = '';
+          }
+          input.classList.remove('is-valid', 'is-invalid');
+        });
+        const alertBox = document.getElementById('bookingSuccessAlert');
+        if (alertBox) alertBox.remove();
+      });
+    }
+  }
+
+
+  // ==========================================================================
+  // 9. FAQ Accordion & VIP Modal (Pre-existing Features)
+  // ==========================================================================
+  const accordionHeaders = document.querySelectorAll('.cinema-accordion-header');
   accordionHeaders.forEach(header => {
     header.addEventListener('click', () => {
       const item = header.parentElement;
@@ -99,8 +380,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-
-  // Popup Modal
   const modalOverlay = document.getElementById('cinemaModal');
   const openModalBtns = document.querySelectorAll('.js-open-modal');
   const closeModalBtn = document.getElementById('closeModalBtn');
@@ -124,28 +403,23 @@ document.addEventListener('DOMContentLoaded', () => {
     openModal();
   }));
 
-  if (closeModalBtn) {
-    closeModalBtn.addEventListener('click', closeModal);
-  }
-
+  if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
   if (modalOverlay) {
-    modalOverlay.addEventListener('click', (event) => {
-      if (event.target === modalOverlay) {
-        closeModal();
-      }
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeModal();
     });
   }
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('show')) {
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('show')) {
       closeModal();
     }
   });
 
 
-  // VIP Club Registration Form Validation
+  // ==========================================================================
+  // 10. VIP Club Form Validation (Pre-existing Feature)
+  // ==========================================================================
   const clubForm = document.getElementById('clubRegistrationForm');
-
   if (clubForm) {
     const nameInput = document.getElementById('regName');
     const emailInput = document.getElementById('regEmail');
@@ -154,214 +428,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const termsInput = document.getElementById('regTerms');
     const formAlert = document.getElementById('formSuccessAlert');
 
-    function setError(input, message) {
-      input.classList.remove('is-valid');
-      input.classList.add('is-invalid');
-      const errorDiv = input.parentElement.querySelector('.invalid-feedback') 
-                    || input.closest('.form-check')?.querySelector('.invalid-feedback');
-      if (errorDiv) {
-        errorDiv.textContent = message;
-      }
+    // Live validation for VIP modal email
+    if (emailInput) {
+      emailInput.addEventListener('input', () => {
+        const val = emailInput.value.trim();
+        if (strictEmailRegex.test(val)) {
+          emailInput.classList.remove('is-invalid');
+          emailInput.classList.add('is-valid');
+        } else {
+          emailInput.classList.remove('is-valid');
+        }
+      });
     }
 
-    function setSuccess(input) {
-      input.classList.remove('is-invalid');
-      input.classList.add('is-valid');
-      const errorDiv = input.parentElement.querySelector('.invalid-feedback')
-                    || input.closest('.form-check')?.querySelector('.invalid-feedback');
-      if (errorDiv) {
-        errorDiv.textContent = '';
+    clubForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let valid = true;
+      if (!nameInput.value.trim()) { nameInput.classList.add('is-invalid'); valid = false; } else { nameInput.classList.remove('is-invalid'); }
+      if (!emailInput.value.trim() || !strictEmailRegex.test(emailInput.value.trim())) {
+        emailInput.classList.remove('is-valid');
+        emailInput.classList.add('is-invalid');
+        const fb = emailInput.parentElement?.querySelector('.invalid-feedback');
+        if (fb) fb.textContent = 'Please enter a valid email (e.g. name@domain.com)';
+        valid = false;
+      } else {
+        emailInput.classList.remove('is-invalid');
+        emailInput.classList.add('is-valid');
       }
-    }
+      if (passwordInput.value.length < 8) { passwordInput.classList.add('is-invalid'); valid = false; } else { passwordInput.classList.remove('is-invalid'); }
+      if (confirmPasswordInput.value !== passwordInput.value || !confirmPasswordInput.value) { confirmPasswordInput.classList.add('is-invalid'); valid = false; } else { confirmPasswordInput.classList.remove('is-invalid'); }
+      if (!termsInput.checked) { termsInput.classList.add('is-invalid'); valid = false; } else { termsInput.classList.remove('is-invalid'); }
 
-    function validateName() {
-      const value = nameInput.value.trim();
-      if (value === '') {
-        setError(nameInput, 'Full name is required.');
-        return false;
-      } else if (value.length < 3) {
-        setError(nameInput, 'Name must be at least 3 characters.');
-        return false;
-      }
-      setSuccess(nameInput);
-      return true;
-    }
-
-    function validateEmail() {
-      const value = emailInput.value.trim();
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (value === '') {
-        setError(emailInput, 'Email address is required.');
-        return false;
-      } else if (!emailRegex.test(value)) {
-        setError(emailInput, 'Please enter a valid email (e.g. name@domain.com).');
-        return false;
-      }
-      setSuccess(emailInput);
-      return true;
-    }
-
-    function validatePassword() {
-      const value = passwordInput.value;
-      if (value === '') {
-        setError(passwordInput, 'Password is required.');
-        return false;
-      } else if (value.length < 8) {
-        setError(passwordInput, 'Password must be at least 8 characters long.');
-        return false;
-      }
-      setSuccess(passwordInput);
-
-      if (confirmPasswordInput.value.length > 0) {
-        validateConfirmPassword();
-      }
-      return true;
-    }
-
-    function validateConfirmPassword() {
-      const password = passwordInput.value;
-      const confirm = confirmPasswordInput.value;
-      if (confirm === '') {
-        setError(confirmPasswordInput, 'Please confirm your password.');
-        return false;
-      } else if (confirm !== password) {
-        setError(confirmPasswordInput, 'Passwords do not match.');
-        return false;
-      }
-      setSuccess(confirmPasswordInput);
-      return true;
-    }
-
-    function validateTerms() {
-      if (!termsInput.checked) {
-        setError(termsInput, 'You must accept the terms to continue.');
-        return false;
-      }
-      setSuccess(termsInput);
-      return true;
-    }
-
-    nameInput.addEventListener('input', validateName);
-    emailInput.addEventListener('input', validateEmail);
-    passwordInput.addEventListener('input', validatePassword);
-    confirmPasswordInput.addEventListener('input', validateConfirmPassword);
-    termsInput.addEventListener('change', validateTerms);
-
-    clubForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-
-      const isNameValid = validateName();
-      const isEmailValid = validateEmail();
-      const isPasswordValid = validatePassword();
-      const isConfirmValid = validateConfirmPassword();
-      const isTermsValid = validateTerms();
-
-      if (isNameValid && isEmailValid && isPasswordValid && isConfirmValid && isTermsValid) {
+      if (valid) {
+        playUiSound(700);
         if (formAlert) {
           formAlert.classList.remove('d-none');
-          formAlert.textContent = `🎉 Welcome, ${nameInput.value.trim()}! Your VIP Club membership is registered. Check your email for confirmation.`;
+          formAlert.textContent = `🎉 Welcome, ${nameInput.value.trim()}! Membership registered.`;
         }
-
-        setTimeout(() => {
-          clubForm.reset();
-          [nameInput, emailInput, passwordInput, confirmPasswordInput, termsInput].forEach(input => {
-            input.classList.remove('is-valid');
-          });
-        }, 1500);
+        setTimeout(() => { clubForm.reset(); }, 1500);
       }
     });
-  }
-
-  // Booking Form Validation
-  const bookingForm = document.getElementById('booking-form');
-  if (bookingForm) {
-    const bName = document.getElementById('fullname');
-    const bEmail = document.getElementById('email');
-    const bMovie = document.getElementById('movie');
-    const bTerms = document.getElementById('termsCheck');
-
-    bookingForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      let isValid = true;
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      if (!bName.value.trim() || bName.value.trim().length < 3) {
-        bName.classList.add('is-invalid');
-        isValid = false;
-      } else {
-        bName.classList.remove('is-invalid');
-        bName.classList.add('is-valid');
-      }
-
-      if (!bEmail.value.trim() || !emailRegex.test(bEmail.value.trim())) {
-        bEmail.classList.add('is-invalid');
-        isValid = false;
-      } else {
-        bEmail.classList.remove('is-invalid');
-        bEmail.classList.add('is-valid');
-      }
-
-      if (!bMovie.value) {
-        bMovie.classList.add('is-invalid');
-        isValid = false;
-      } else {
-        bMovie.classList.remove('is-invalid');
-        bMovie.classList.add('is-valid');
-      }
-
-      if (!bTerms.checked) {
-        bTerms.classList.add('is-invalid');
-        isValid = false;
-      } else {
-        bTerms.classList.remove('is-invalid');
-      }
-
-      if (isValid) {
-        let alertBox = document.getElementById('bookingSuccessAlert');
-        if (!alertBox) {
-          alertBox = document.createElement('div');
-          alertBox.id = 'bookingSuccessAlert';
-          alertBox.className = 'alert alert-success alert-dismissible fade show mt-3';
-          alertBox.role = 'alert';
-          bookingForm.prepend(alertBox);
-        }
-        alertBox.innerHTML = `<strong>🎟️ Booking Confirmed!</strong> A confirmation email with QR code has been sent to <u>${bEmail.value}</u>. See you at the movies!`;
-        bookingForm.reset();
-        [bName, bEmail, bMovie].forEach(el => el.classList.remove('is-valid'));
-      }
-    });
-  }
-
-  // URL Hash State Handler for Direct Showcase
-  const hash = window.location.hash;
-  if (hash === '#modal') {
-    openModal();
-  } else if (hash === '#validation-errors') {
-    openModal();
-    if (clubForm) clubForm.dispatchEvent(new Event('submit'));
-  } else if (hash === '#validation-success') {
-    openModal();
-    const nameInput = document.getElementById('regName');
-    const emailInput = document.getElementById('regEmail');
-    const passwordInput = document.getElementById('regPassword');
-    const confirmPasswordInput = document.getElementById('regConfirmPassword');
-    const termsInput = document.getElementById('regTerms');
-    if (nameInput) nameInput.value = 'Diyar Umarov';
-    if (emailInput) emailInput.value = 'diyar.umarov@astanait.edu.kz';
-    if (passwordInput) passwordInput.value = 'CinemaPass2026';
-    if (confirmPasswordInput) confirmPasswordInput.value = 'CinemaPass2026';
-    if (termsInput) termsInput.checked = true;
-    if (clubForm) clubForm.dispatchEvent(new Event('submit'));
-  } else if (hash === '#accordion') {
-    const firstHeader = document.querySelector('.cinema-accordion-header');
-    if (firstHeader) firstHeader.click();
-    const faqSection = document.querySelector('.cinema-accordion');
-    if (faqSection) faqSection.scrollIntoView();
-  } else if (hash === '#theme') {
-    if (themeToggleBtn) {
-      themeToggleBtn.click();
-      themeToggleBtn.click();
-    }
   }
 
 });

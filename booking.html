@@ -152,18 +152,20 @@
               <!-- Full Name -->
               <div class="mb-3">
                 <label for="fullname" class="form-label fw-semibold text-light">Full Name *</label>
-                <div class="input-group">
+                <div class="input-group has-validation">
                   <span class="input-group-text bg-dark border-secondary text-warning" id="name-addon">Name</span>
                   <input type="text" class="form-control bg-dark border-secondary text-light" id="fullname" name="fullname" placeholder="e.g. Diyar Umarov" aria-describedby="name-addon" required>
+                  <div class="invalid-feedback">Please enter at least 3 characters.</div>
                 </div>
               </div>
 
               <!-- Email -->
               <div class="mb-3">
                 <label for="email" class="form-label fw-semibold text-light">Email Address *</label>
-                <div class="input-group">
+                <div class="input-group has-validation">
                   <span class="input-group-text bg-dark border-secondary text-warning" id="email-addon">@</span>
                   <input type="email" class="form-control bg-dark border-secondary text-light" id="email" name="email" placeholder="you@example.com" aria-describedby="email-addon" required>
+                  <div class="invalid-feedback">Please enter a valid email (e.g. name@domain.com).</div>
                 </div>
                 <div class="form-text text-secondary">Your booking voucher and barcode will be sent here.</div>
               </div>
@@ -258,10 +260,15 @@
                 </label>
               </div>
 
-              <!-- Submit Button -->
-              <button type="submit" class="btn btn-warning btn-lg w-100 fw-bold text-white py-3 shadow-sm">
-                Confirm Reservation &rarr;
-              </button>
+              <!-- Action Buttons (Submit & Reset) -->
+              <div class="d-flex flex-column flex-sm-row gap-2">
+                <button type="submit" class="btn btn-warning btn-lg flex-grow-1 fw-bold text-white py-3 shadow-sm">
+                  Confirm Reservation &rarr;
+                </button>
+                <button type="button" id="resetBookingBtn" class="btn btn-outline-secondary btn-lg fw-semibold py-3 px-4 shadow-sm" title="Clear all inputs">
+                  Reset
+                </button>
+              </div>
 
             </form>
           </div>

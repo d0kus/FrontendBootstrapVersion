@@ -29,8 +29,9 @@
           <span id="clockText" class="fw-semibold text-warning small">Loading time...</span>
         </div>
 
-        <!-- Theme Switcher & VIP Club Modal Trigger -->
+        <!-- Theme Switcher, Sound & VIP Club Modal Trigger -->
         <div class="d-flex align-items-center gap-2 ms-auto">
+          <button id="soundBtn" type="button" class="btn btn-sm btn-outline-secondary text-light py-0 px-2" title="Play notification sound">🔔 Sound</button>
           <button id="themeToggleBtn" type="button" class="btn btn-sm btn-outline-secondary text-light py-0 px-2" title="Click to switch background theme">
             <span class="d-none d-sm-inline">Theme:</span> <span id="themeNameLabel" class="text-warning fw-bold">Obsidian Dark</span>
           </button>
@@ -206,22 +207,22 @@
           <p class="text-secondary mb-0">Browse current theatrical releases and select your preferred viewing format.</p>
         </div>
 
-        <!-- Button Group for Format Filter -->
-        <div class="btn-group shadow-sm" role="group" aria-label="Movie Format Filter">
-          <button type="button" class="btn btn-warning active fw-semibold text-white">All Formats</button>
-          <button type="button" class="btn btn-outline-secondary text-light">IMAX 3D</button>
-          <button type="button" class="btn btn-outline-secondary text-light">Dolby Cinema</button>
-          <button type="button" class="btn btn-outline-secondary text-light">Standard 2D</button>
+        <!-- Button Group for Format Filter (Controlled via JS Switch Statement) -->
+        <div class="btn-group shadow-sm" role="group" aria-label="Movie Format Filter" id="movieFormatFilterGroup">
+          <button type="button" class="btn btn-warning active fw-semibold text-white format-filter-btn" data-filter="all">All Formats</button>
+          <button type="button" class="btn btn-outline-secondary text-light format-filter-btn" data-filter="imax">IMAX 3D</button>
+          <button type="button" class="btn btn-outline-secondary text-light format-filter-btn" data-filter="dolby">Dolby Cinema</button>
+          <button type="button" class="btn btn-outline-secondary text-light format-filter-btn" data-filter="standard">Standard 2D</button>
         </div>
       </div>
     </section>
 
     <!-- Now Showing: 6 Movies in 3-Column Grid (col-lg-4) -->
     <section class="container py-4 py-lg-5" aria-label="Now Showing Movie Cards">
-      <div class="row g-4">
+      <div class="row g-4" id="movieCardsGrid">
 
         <!-- Movie 1 -->
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-4 movie-card-item" data-category="imax">
           <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 shadow-sm hover-card">
             <img src="images/i.webp" class="card-img-top object-fit-cover" style="height: 320px;" alt="The Odyssey">
             <div class="card-body d-flex flex-column">
@@ -241,7 +242,7 @@
         </div>
 
         <!-- Movie 2 -->
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-4 movie-card-item" data-category="dolby">
           <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 shadow-sm hover-card">
             <img src="images/dune.webp" class="card-img-top object-fit-cover" style="height: 320px;" alt="Dune 3">
             <div class="card-body d-flex flex-column">
@@ -261,7 +262,7 @@
         </div>
 
         <!-- Movie 3 -->
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-4 movie-card-item" data-category="standard">
           <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 shadow-sm hover-card">
             <img src="images/backrooms.jpg" class="card-img-top object-fit-cover" style="height: 320px;" alt="Backrooms">
             <div class="card-body d-flex flex-column">
@@ -281,7 +282,7 @@
         </div>
 
         <!-- Movie 4 -->
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-4 movie-card-item" data-category="imax">
           <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 shadow-sm hover-card">
             <img src="images/spider.jpg" class="card-img-top object-fit-cover" style="height: 320px;" alt="Spider-Man: Brand New Day">
             <div class="card-body d-flex flex-column">
@@ -301,7 +302,7 @@
         </div>
 
         <!-- Movie 5 -->
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-4 movie-card-item" data-category="dolby">
           <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 shadow-sm hover-card">
             <img src="images/fall.jpg" class="card-img-top object-fit-cover" style="height: 320px;" alt="Fall 2: Deadpoint">
             <div class="card-body d-flex flex-column">
@@ -321,7 +322,7 @@
         </div>
 
         <!-- Movie 6 -->
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-4 movie-card-item" data-category="dolby">
           <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 shadow-sm hover-card">
             <img src="images/inception11.jpg" class="card-img-top object-fit-cover" style="height: 320px;" alt="Inception Anniversary Screening">
             <div class="card-body d-flex flex-column">
@@ -354,6 +355,32 @@
         <a href="schedule.html" class="btn btn-outline-warning px-4 py-2 fw-semibold">
           Check Eligible Times &rarr;
         </a>
+      </div>
+    </section>
+
+    <!-- Assignment 5: Interactive Rating & Dynamic Highlights -->
+    <section class="container pb-5" aria-label="Audience Experience Rating">
+      <div class="card p-4 rounded-4 shadow-sm bg-secondary bg-opacity-10 border-secondary border-opacity-75">
+        <div class="row align-items-center g-3">
+          <div class="col-12 col-md-7">
+            <span class="badge bg-warning text-white fw-bold px-2 py-1 mb-2">Assignment 5 Interactive Features</span>
+            <h3 class="h4 fw-bold text-light mb-1">Rate Your Cinema Experience</h3>
+            <p class="text-secondary small mb-2">Click stars to rate. Below are dynamic cinema highlights generated via JS Object &amp; Loop:</p>
+            <div id="dynamicHighlights" class="d-flex flex-wrap gap-2 mb-2"></div>
+            <div id="cinemaInfoSummary" class="text-warning small"></div>
+            <div id="keyboardNavNotice" class="badge bg-warning text-white mt-2 d-none"></div>
+          </div>
+          <div class="col-12 col-md-5 text-md-end">
+            <div class="star-rating d-inline-flex gap-2 fs-2 text-secondary mb-1" id="cinemaStarRating" role="group" aria-label="Star Rating">
+              <span class="star-item" data-value="1" role="button" tabindex="0" title="1 Star">★</span>
+              <span class="star-item" data-value="2" role="button" tabindex="0" title="2 Stars">★</span>
+              <span class="star-item" data-value="3" role="button" tabindex="0" title="3 Stars">★</span>
+              <span class="star-item" data-value="4" role="button" tabindex="0" title="4 Stars">★</span>
+              <span class="star-item" data-value="5" role="button" tabindex="0" title="5 Stars">★</span>
+            </div>
+            <div id="ratingFeedback" class="small fw-semibold text-warning">Click a star to rate</div>
+          </div>
+        </div>
       </div>
     </section>
 

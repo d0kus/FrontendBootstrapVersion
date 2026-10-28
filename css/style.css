@@ -374,4 +374,37 @@ p, .lead, .card-text, .text-secondary {
   padding: 24px;
 }
 
+/* =========================================================
+   Assignment 5: Interactive UI & Animations
+   ========================================================= */
+
+/* Keyboard Focus Indicators for Accessible Nav Navigation */
+.navbar-nav .nav-link:focus-visible {
+  outline: 2px solid var(--cinema-orange);
+  outline-offset: 4px;
+  border-radius: 4px;
+  background-color: rgba(249, 115, 22, 0.15);
+}
+
+/* Star Rating Component */
+.star-item {
+  cursor: pointer;
+  color: #64748b;
+  transition: transform 0.2s ease, color 0.2s ease;
+  display: inline-block;
+  user-select: none;
+}
+
+.star-item:hover,
+.star-item.active {
+  color: #f59e0b !important;
+  text-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+}
+
+/* Movie Card Filter Transition */
+.movie-card-item {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
 
